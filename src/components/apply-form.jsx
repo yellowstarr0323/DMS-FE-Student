@@ -87,7 +87,7 @@ export function ApplyForm({
         <TeacherPicker value={teacherId} onChange={setTeacherId} teachers={teachers} />
       </Field>
 
-      <Field label="유형" required hint="선생님이 관리하는 유형 중에서 골라주세요.">
+      <Field label="유형" required hint="새벽자습 유형을 선택해주세요">
         {types.length === 0 ? (
           <EmptyTypes>등록된 유형이 없어요.</EmptyTypes> 
         ) : (
@@ -123,7 +123,7 @@ export function ApplyForm({
         </PeriodGrid>
       </Field>
 
-      <Field label="사유" required hint="구체적으로 작성할수록 승인 확률이 높아져요.">
+      <Field label="사유" required>
         <Textarea
           value={reason}
           onChange={(e) => setReason(e.target.value)}
