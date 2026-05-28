@@ -87,9 +87,9 @@ export function ApplyForm({
         <TeacherPicker value={teacherId} onChange={setTeacherId} teachers={teachers} />
       </Field>
 
-      <Field label="유형" required hint="선생님이 관리하는 유형 중에서 골라주세요." right={`${types.length}개 유형`}>
+      <Field label="유형" required hint="선생님이 관리하는 유형 중에서 골라주세요.">
         {types.length === 0 ? (
-          <EmptyTypes>등록된 유형이 없어요.</EmptyTypes>
+          <EmptyTypes>등록된 유형이 없어요.</EmptyTypes> 
         ) : (
           <TypeRow>
             {types.map((t) => {
