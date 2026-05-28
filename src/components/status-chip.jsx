@@ -8,7 +8,7 @@ export const STATUS_META = {
   PENDING: { label: "요청 중", bg: "var(--gray-200)", fg: "var(--gray-500)", dot: "var(--gray-400)" },
   FIRST_APPROVED: { label: "1차 승인", bg: "var(--primary-blue-50)", fg: "var(--primary-blue-300)", dot: "var(--primary-blue-300)" },
   SECOND_APPROVED: { label: "최종 승인", bg: "var(--primary-blue-300)", fg: "#fff", dot: "#fff" },
-  REJECTED: { label: "거절 됨", bg: "var(--error-50)", fg: "var(--error-300)", dot: "var(--error-300)" },
+  REJECTED: { label: "거절됨", bg: "var(--error-50)", fg: "var(--error-300)", dot: "var(--error-300)" },
   EXPIRED: { label: "만료됨", bg: "var(--gray-200)", fg: "var(--gray-400)", dot: "var(--gray-400)" },
 };
 

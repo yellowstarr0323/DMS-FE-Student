@@ -91,7 +91,7 @@ const IdleDot = styled.span`
 `;
 
 const StepLabel = styled.div`
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: var(--tracking);
   color: ${({ $tone }) =>
@@ -100,7 +100,7 @@ const StepLabel = styled.div`
 
 const StepTime = styled.div`
   margin-top: 4px;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--gray-400);
   letter-spacing: var(--tracking);
