@@ -13,7 +13,7 @@ const LabelRow = styled.div`
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--gray-700);
   letter-spacing: var(--tracking);
@@ -25,13 +25,13 @@ const Required = styled.span`
 `;
 
 const RightNote = styled.span`
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--gray-400);
 `;
 
 const Hint = styled.div`
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--gray-400);
   letter-spacing: var(--tracking);
