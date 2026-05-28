@@ -77,9 +77,12 @@ export function ApplyForm({
   onSubmit,
   submitting = false,
 }) {
+  const dateError = startDate && endDate && endDate < startDate
+    ? "종료일이 시작일보다 앞설 수 없어요."
+    : null;
   const days = diffDays(startDate, endDate);
   const canSubmit =
-    Boolean(teacherId && typeId && startDate && endDate && reason.trim()) && !submitting;
+    Boolean(teacherId && typeId && startDate && endDate && reason.trim()) && !dateError && !submitting;
 
   return (
     <Form>
@@ -105,7 +108,7 @@ export function ApplyForm({
         )}
       </Field>
 
-      <Field label="일정" required hint="시작일과 종료일을 선택해주세요." right={days ? `총 ${days}일` : ""}>
+      <Field label="일정" required hint="시작일과 종료일을 선택해주세요." right={days ? `총 ${days}일` : ""} error={dateError}>
         <PeriodGrid>
           <Input
             type="date"
