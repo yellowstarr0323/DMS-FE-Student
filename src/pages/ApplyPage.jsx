@@ -97,16 +97,6 @@ const FormSubtitle = styled.div`
   letter-spacing: var(--tracking);
 `;
 
-const StepBadge = styled.span`
-  padding: 6px 12px;
-  background: var(--system-bg-2);
-  color: var(--gray-500);
-  border-radius: var(--radius-pill);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: var(--tracking);
-`;
-
 const Toast = styled.div`
   position: fixed;
   left: 50%;
@@ -219,7 +209,6 @@ function ApplyPage() {
               <FormTitle>새 신청 작성</FormTitle>
               <FormSubtitle>네 항목 모두 입력해주세요.</FormSubtitle>
             </div>
-            <StepBadge>1 · 작성</StepBadge>
           </FormHeader>
           <ApplyForm
             teachers={teachers.data ?? []}
