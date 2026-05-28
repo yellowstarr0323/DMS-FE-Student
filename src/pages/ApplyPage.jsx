@@ -83,18 +83,10 @@ const FormHeader = styled.header`
 
 const FormTitle = styled.h2`
   margin: 0;
-  font-size: 22px;
+  font-size: 25px;
   font-weight: 700;
   color: var(--gray-700);
   letter-spacing: var(--tracking-tight);
-`;
-
-const FormSubtitle = styled.div`
-  margin-top: 4px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--gray-500);
-  letter-spacing: var(--tracking);
 `;
 
 const Toast = styled.div`
@@ -207,7 +199,6 @@ function ApplyPage() {
           <FormHeader>
             <div>
               <FormTitle>새 신청 작성</FormTitle>
-              <FormSubtitle>네 항목 모두 입력해주세요.</FormSubtitle>
             </div>
           </FormHeader>
           <ApplyForm

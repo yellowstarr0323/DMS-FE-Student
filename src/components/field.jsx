@@ -13,7 +13,7 @@ const LabelRow = styled.div`
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--gray-700);
   letter-spacing: var(--tracking);
