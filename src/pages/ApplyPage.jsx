@@ -144,6 +144,7 @@ function toHeaderStudent(profile) {
     name: profile.name,
     id: profile.gcn,
     initial: profile.name?.[0] ?? "·",
+    profileImageUrl: profile.profileImageUrl ?? null,
   };
 }
 

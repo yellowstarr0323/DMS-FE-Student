@@ -71,6 +71,13 @@ const Avatar = styled.div`
   font-size: 13px;
   font-weight: 700;
   letter-spacing: var(--tracking);
+  overflow: hidden;
+`;
+
+const AvatarImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const NameBlock = styled.div`
@@ -114,7 +121,11 @@ export function AppHeader({ student, onLogout }) {
 
       <Right>
         <Profile>
-          <Avatar>{student.initial}</Avatar>
+          <Avatar>
+            {student.profileImageUrl
+              ? <AvatarImg src={student.profileImageUrl} alt={student.name} />
+              : student.initial}
+          </Avatar>
           <NameBlock>
             <Name>{student.name}</Name>
             <SubId>{student.id}</SubId>
