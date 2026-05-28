@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" fill="none">
+  <defs>
+    <linearGradient id="bp-blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#65A2FE"></stop>
+      <stop offset="1" stop-color="#0F6EFE"></stop>
+    </linearGradient>
+    <linearGradient id="bp-teal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2EA08C"></stop>
+      <stop offset="1" stop-color="#1F7565"></stop>
+    </linearGradient>
+  </defs>
+  
+  <path d="M0 0 H160 V160 A160 160 0 0 0 0 0 Z" fill="#ECEDD9"></path>
+  <path d="M160 0 H320 A0 0 0 0 1 320 0 V160 H160 V0 Z M320 160 A160 160 0 0 0 160 0 Z" fill="url(#bp-blue)"></path>
+  <circle cx="320" cy="80" r="60" fill="#9FE3E3"></circle>
+  <path d="M480 0 V160 A80 80 0 0 1 400 80 A80 80 0 0 1 480 0 Z" fill="url(#bp-teal)"></path>
+  
+  <circle cx="80" cy="240" r="60" fill="#9FE3E3"></circle>
+  <path d="M160 160 H320 V320 H160 V160 Z M320 160 A160 160 0 0 1 160 320 Z" fill="url(#bp-teal)"></path>
+  <path d="M320 160 H440 A0 0 0 0 1 440 160 V300 A140 140 0 0 0 320 160 Z" fill="#ECEDD9"></path>
+  <circle cx="380" cy="270" r="50" fill="#9FE3E3"></circle>
+  <path d="M440 160 H480 V320 H400 A40 40 0 0 1 440 280 Z" fill="url(#bp-blue)"></path>
+</svg>

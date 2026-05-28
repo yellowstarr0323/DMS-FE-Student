@@ -1,0 +1,79 @@
+/* tokens — 디자인 시스템 변수(:root custom properties).
+   색/타이포 패밀리/간격/라운드/그림자의 단일 출처(single source of truth).
+   styled-components 는 이 변수들을 var(--...) 로 소비한다.
+   Source: Figma "2026 DMS UI" (DSM Dormitory Management System) */
+
+:root {
+  --font-sans: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+    Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
+    "Noto Sans KR", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Primary Blue (brand) */
+  --primary-blue-50: #e7f0ff;
+  --primary-blue-100: #b1d0fe;
+  --primary-blue-200: #65a2fe;
+  --primary-blue-300: #0f6efe; /* brand */
+  --primary-blue-400: #0c58cb;
+  --primary-blue-500: #052453;
+
+  /* Neutral Gray ramp */
+  --gray-50: #ffffff;
+  --gray-100: #f9f9f9;
+  --gray-200: #eeeeee;
+  --gray-300: #dddddd;
+  --gray-400: #999999;
+  --gray-500: #555555;
+  --gray-600: #343434;
+  --gray-700: #202020;
+  --gray-800: #121212;
+  --gray-900: #101010;
+
+  /* Error / Destructive */
+  --error-50: #ffe7e7;
+  --error-100: #feb1b1;
+  --error-200: #fe6565;
+  --error-300: #fe0f0f;
+  --error-400: #cb0c0c;
+  --error-500: #530505;
+
+  /* System surfaces */
+  --system-bg: #ffffff; /* page background */
+  --system-bg-2: #f2f4f6; /* secondary surface / cards */
+  --system-container: #ffffff;
+  --system-button: #b0b6c1; /* icon default fill */
+
+  /* Brand pattern accents */
+  --brand-teal: #2ea08c;
+  --brand-cyan: #9fe3e3;
+  --brand-cream: #ecedd9;
+
+  /* Spacing — base unit 4px */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+
+  /* Radius */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 9999px;
+
+  /* Elevation — DMS uses very soft shadows */
+  --shadow-card: 0 1px 15px rgba(0, 0, 0, 0.06);
+  --shadow-toast: 0 0 20px rgba(15, 110, 254, 0.18), 0 4px 24px rgba(0, 0, 0, 0.08);
+  --shadow-dropdown: 0 12px 28px rgba(0, 0, 0, 0.1);
+
+  /* Tracking — Pretendard renders Hangul + Latin best at -1% to -2% */
+  --tracking: -0.01em;
+  --tracking-tight: -0.02em;
+}

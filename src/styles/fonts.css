@@ -1,0 +1,32 @@
+/* fonts — Pretendard 로컬 로딩.
+   tokens.css 의 --font-sans 가 가리키는 실제 폰트를 여기서 불러온다.
+   네 가지 코어 weight 를 src/fonts 에서 자체 호스팅 — CDN 의존성 없음. */
+
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/Pretendard-Regular.otf") format("opentype");
+}
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/Pretendard-Medium.otf") format("opentype");
+}
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/Pretendard-SemiBold.otf") format("opentype");
+}
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/Pretendard-Bold.otf") format("opentype");
+}

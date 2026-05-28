@@ -1,0 +1,7 @@
+/* styles barrel — 로딩 순서대로 한데 모은다.
+   소비처는 이 파일 하나만 import 한다 (main.jsx).
+   fonts → tokens → base */
+
+@import "./fonts.css";
+@import "./tokens.css";
+@import "./base.css";
