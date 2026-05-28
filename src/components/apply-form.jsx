@@ -95,7 +95,7 @@ export function ApplyForm({
             {types.map((t) => {
               const selected = t.id === typeId;
               return (
-                <TypeChip key={t.id} $selected={selected} onClick={() => setTypeId(t.id)}>
+                <TypeChip key={t.id} $selected={selected} onClick={() => setTypeId(selected ? null : t.id)}>
                   {selected && <Icon name="check" size={14} color="#fff" strokeWidth={2.6} />}
                   {t.name}
                 </TypeChip>
