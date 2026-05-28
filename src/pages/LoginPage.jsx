@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { Field, Input, Button, Icon } from "../components/index.js";
 import { useToast } from "../hooks/index.js";
 import { signIn } from "../api/auth.js";
-import patternUrl from "../assets/dms-pattern.svg";
+import patternSvg from "../assets/dms-pattern.svg?raw";
 
 const Page = styled.div`
   min-height: 100vh;
@@ -34,10 +34,16 @@ const Pattern = styled.div`
   position: absolute;
   inset: 0;
   opacity: 0.18;
-  background-image: url(${patternUrl});
-  background-size: 560px;
-  background-position: right -80px top -40px;
-  background-repeat: no-repeat;
+  pointer-events: none;
+  overflow: hidden;
+
+  svg {
+    position: absolute;
+    right: -80px;
+    top: -40px;
+    width: 560px;
+    height: auto;
+  }
 `;
 
 const BrandBottom = styled.div`
@@ -225,7 +231,7 @@ function LoginPage() {
   return (
     <Page>
       <BrandPanel>
-        <Pattern />
+        <Pattern dangerouslySetInnerHTML={{ __html: patternSvg }} />
         <BrandBottom>
           <BrandEyebrow>DSM Dormitory Management System</BrandEyebrow>
           <BrandTitle>
@@ -250,46 +256,48 @@ function LoginPage() {
             </CardTitle>
           </CardHeader>
 
-          <Fields>
-            <Field label="아이디">
-              <Input
-                value={id}
-                onChange={(e) => setId(e.target.value)}
-                placeholder="아이디를 입력해주세요"
-                leading={<Icon name="user" size={20} />}
-              />
-            </Field>
+          <form onSubmit={(e) => { e.preventDefault(); login(); }}>
+            <Fields>
+              <Field label="아이디">
+                <Input
+                  value={id}
+                  onChange={(e) => setId(e.target.value)}
+                  placeholder="아이디를 입력해주세요"
+                  leading={<Icon name="user" size={20} />}
+                />
+              </Field>
 
-            <Field label="비밀번호">
-              <Input
-                value={pw}
-                onChange={(e) => setPw(e.target.value)}
-                type={showPw ? "text" : "password"}
-                placeholder="비밀번호를 입력해주세요"
-                leading={<Icon name="lock" size={20} />}
-                trailing={
-                  <TrailingButton type="button" onClick={() => setShowPw((s) => !s)}>
-                    <Icon name={showPw ? "eyeOff" : "eye"} size={20} />
-                  </TrailingButton>
-                }
-              />
-            </Field>
-          </Fields>
+              <Field label="비밀번호">
+                <Input
+                  value={pw}
+                  onChange={(e) => setPw(e.target.value)}
+                  type={showPw ? "text" : "password"}
+                  placeholder="비밀번호를 입력해주세요"
+                  leading={<Icon name="lock" size={20} />}
+                  trailing={
+                    <TrailingButton type="button" onClick={() => setShowPw((s) => !s)}>
+                      <Icon name={showPw ? "eyeOff" : "eye"} size={20} />
+                    </TrailingButton>
+                  }
+                />
+              </Field>
+            </Fields>
 
-          <RememberRow>
-            <RememberLabel>
-              <Checkbox $checked={remember} onClick={() => setRemember((r) => !r)}>
-                {remember && <Icon name="check" size={14} color="#fff" strokeWidth={2.6} />}
-              </Checkbox>
-              자동 로그인
-            </RememberLabel>
-          </RememberRow>
+            <RememberRow>
+              <RememberLabel>
+                <Checkbox $checked={remember} onClick={() => setRemember((r) => !r)}>
+                  {remember && <Icon name="check" size={14} color="#fff" strokeWidth={2.6} />}
+                </Checkbox>
+                자동 로그인
+              </RememberLabel>
+            </RememberRow>
 
-          {error && <ErrorMessage>{error}</ErrorMessage>}
+            {error && <ErrorMessage>{error}</ErrorMessage>}
 
-          <FullButton variant="primary" size="lg" disabled={!can || submitting} onClick={login}>
-            {submitting ? "로그인 중…" : "로그인"}
-          </FullButton>
+            <FullButton type="submit" variant="primary" size="lg" disabled={!can || submitting}>
+              {submitting ? "로그인 중…" : "로그인"}
+            </FullButton>
+          </form>
         </Card>
       </LoginPanel>
 

@@ -50,6 +50,7 @@ const StyledButton = styled.button`
 export function Button({
   variant = "primary",
   size = "md",
+  type = "button",
   children,
   onClick,
   disabled,
@@ -58,7 +59,7 @@ export function Button({
 }) {
   return (
     <StyledButton
-      type="button"
+      type={type}
       $variant={variant}
       $size={size}
       onClick={onClick}
