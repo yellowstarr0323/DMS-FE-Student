@@ -94,9 +94,8 @@ const LoginPanel = styled.div`
   padding: 40px;
 
   @media (max-width: 640px) {
-    padding: 24px 16px;
-    align-items: flex-start;
-    padding-top: 48px;
+    padding: 32px 0;
+    align-items: center;
   }
 `;
 
@@ -108,9 +107,11 @@ const Card = styled.div`
   box-shadow: var(--shadow-card);
 
   @media (max-width: 640px) {
-    width: 100%;
+    width: calc(100vw - 32px);
+    max-width: 440px;
     padding: 32px 20px 24px;
     border-radius: var(--radius-lg);
+    box-shadow: none;
   }
 `;
 
