@@ -28,6 +28,14 @@ const Main = styled.main`
   max-width: 1100px;
   margin: 0 auto;
   padding: 40px 40px 64px;
+
+  @media (max-width: 900px) {
+    padding: 32px 24px 56px;
+  }
+
+  @media (max-width: 640px) {
+    padding: 24px 16px 48px;
+  }
 `;
 
 const TitleRow = styled.div`
@@ -35,6 +43,13 @@ const TitleRow = styled.div`
   align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 24px;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 16px;
+  }
 `;
 
 const Title = styled.h1`
@@ -43,6 +58,10 @@ const Title = styled.h1`
   font-weight: 800;
   color: var(--gray-700);
   letter-spacing: var(--tracking-tight);
+
+  @media (max-width: 640px) {
+    font-size: 22px;
+  }
 `;
 
 const Today = styled.div`
@@ -72,6 +91,11 @@ const FormSection = styled.section`
   border-radius: var(--radius-xl);
   padding: 36px 40px;
   border: 1px solid var(--gray-200);
+
+  @media (max-width: 640px) {
+    padding: 24px 16px;
+    border-radius: var(--radius-lg);
+  }
 `;
 
 const FormHeader = styled.header`

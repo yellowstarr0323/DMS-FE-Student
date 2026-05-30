@@ -16,6 +16,10 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  @media (max-width: 640px) {
+    padding: 20px 16px;
+  }
 `;
 
 const Head = styled.div`
@@ -58,6 +62,10 @@ const Timeline = styled.div`
   gap: 0;
   padding-top: 20px;
   border-top: 1px solid var(--gray-200);
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+  }
 `;
 
 const Step = styled.div`
@@ -67,6 +75,14 @@ const Step = styled.div`
   gap: 8px;
   flex: 0 0 auto;
   min-width: 140px;
+
+  @media (max-width: 640px) {
+    flex-direction: row;
+    align-items: center;
+    min-width: unset;
+    width: 100%;
+    gap: 12px;
+  }
 `;
 
 const Node = styled.div`
@@ -111,6 +127,14 @@ const Connector = styled.div`
   height: 2px;
   margin-top: 15px;
   background: ${({ $active }) => ($active ? "var(--primary-blue-300)" : "var(--gray-200)")};
+
+  @media (max-width: 640px) {
+    flex: none;
+    width: 2px;
+    height: 20px;
+    margin-top: 0;
+    margin-left: 15px;
+  }
 `;
 
 function nodeView(step) {
@@ -190,7 +214,7 @@ export function LatestApplicationCard({ application }) {
                 <Node $bg={view.bg} $fg={view.fg} $border={view.border}>
                   {view.content}
                 </Node>
-                <div style={{ textAlign: "center" }}>
+                <div>
                   <StepLabel $tone={tone}>{s.rejected ? "거절 됨" : s.label}</StepLabel>
                   <StepTime>{stepTimeText(s)}</StepTime>
                 </div>

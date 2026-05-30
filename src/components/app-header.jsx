@@ -13,6 +13,11 @@ const Header = styled.header`
   padding: 0 40px;
   gap: 20px;
   font-family: var(--font-sans);
+
+  @media (max-width: 640px) {
+    padding: 0 16px;
+    gap: 12px;
+  }
 `;
 
 const Brand = styled.div`
@@ -37,6 +42,10 @@ const Divider = styled.span`
   width: 1px;
   background: var(--gray-200);
   display: inline-block;
+
+  @media (max-width: 640px) {
+    display: none;
+  }
 `;
 
 const PageTitle = styled.span`
@@ -44,6 +53,10 @@ const PageTitle = styled.span`
   font-weight: 500;
   color: var(--gray-500);
   letter-spacing: var(--tracking);
+
+  @media (max-width: 640px) {
+    display: none;
+  }
 `;
 
 const Right = styled.div`
@@ -84,6 +97,10 @@ const NameBlock = styled.div`
   line-height: 1.25;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 640px) {
+    display: none;
+  }
 `;
 
 const Name = styled.span`

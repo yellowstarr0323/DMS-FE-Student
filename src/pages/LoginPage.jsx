@@ -28,6 +28,15 @@ const BrandPanel = styled.div`
   flex-direction: column;
   position: relative;
   overflow: hidden;
+
+  @media (max-width: 900px) {
+    flex: 0 0 320px;
+    padding: 40px 28px 36px;
+  }
+
+  @media (max-width: 640px) {
+    display: none;
+  }
 `;
 
 const Pattern = styled.div`
@@ -83,6 +92,12 @@ const LoginPanel = styled.div`
   align-items: center;
   justify-content: center;
   padding: 40px;
+
+  @media (max-width: 640px) {
+    padding: 24px 16px;
+    align-items: flex-start;
+    padding-top: 48px;
+  }
 `;
 
 const Card = styled.div`
@@ -91,6 +106,12 @@ const Card = styled.div`
   border-radius: var(--radius-xl);
   padding: 44px 40px 36px;
   box-shadow: var(--shadow-card);
+
+  @media (max-width: 640px) {
+    width: 100%;
+    padding: 32px 20px 24px;
+    border-radius: var(--radius-lg);
+  }
 `;
 
 const CardHeader = styled.div`

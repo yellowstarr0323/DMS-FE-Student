@@ -9,6 +9,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  overflow-x: hidden;
   background: var(--system-bg-2);
   color: var(--gray-700);
   font-family: var(--font-sans);

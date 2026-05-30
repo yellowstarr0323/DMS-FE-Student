@@ -50,12 +50,43 @@ const PeriodGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   gap: 12px;
-  align-items: center;
+  align-items: end;
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+
+    > :nth-child(2) {
+      display: none;
+    }
+  }
+`;
+
+const DateGroup = styled.div``;
+
+const DateLabel = styled.div`
+  display: none;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gray-500);
+  letter-spacing: var(--tracking);
+  margin-bottom: 6px;
+
+  @media (max-width: 480px) {
+    display: block;
+  }
 `;
 
 const SubmitRow = styled.div`
   display: flex;
   justify-content: flex-end;
+
+  @media (max-width: 640px) {
+    justify-content: stretch;
+
+    button {
+      width: 100%;
+    }
+  }
 `;
 
 // 시작/종료일(yyyy-MM-dd) 포함 일수.
@@ -110,19 +141,25 @@ export function ApplyForm({
 
       <Field label="일정" required hint="시작일과 종료일을 선택해주세요." right={days ? `총 ${days}일` : ""} error={dateError}>
         <PeriodGrid>
-          <Input
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-            leading={<Icon name="cal" size={20} />}
-          />
+          <DateGroup>
+            <DateLabel>시작일</DateLabel>
+            <Input
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+              leading={<Icon name="cal" size={20} />}
+            />
+          </DateGroup>
           <Icon name="arrR" size={18} color="var(--gray-400)" />
-          <Input
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-            leading={<Icon name="cal" size={20} />}
-          />
+          <DateGroup>
+            <DateLabel>종료일</DateLabel>
+            <Input
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+              leading={<Icon name="cal" size={20} />}
+            />
+          </DateGroup>
         </PeriodGrid>
       </Field>
 

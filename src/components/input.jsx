@@ -35,6 +35,7 @@ const NativeInput = styled.input`
   font-weight: 500;
   color: var(--gray-700);
   letter-spacing: var(--tracking);
+  color-scheme: light;
 `;
 
 export function Input({ value, placeholder, type = "text", onChange, leading, trailing, className }) {
