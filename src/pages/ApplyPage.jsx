@@ -184,6 +184,11 @@ function ApplyPage() {
       await applyStudyApplication({ teacherId, typeId, reason, startDate, endDate });
       toast.show("새벽자습 신청을 보냈어요.", "success");
       myApplication.reload();
+      setTeacherId(null);
+      setTypeId(null);
+      setStartDate("");
+      setEndDate("");
+      setReason("");
     } catch (e) {
       if (e?.status === 409) {
         toast.show("이미 진행 중인 신청이 있어요.", "error");
