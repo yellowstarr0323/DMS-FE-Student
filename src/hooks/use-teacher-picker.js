@@ -10,6 +10,13 @@ export function useTeacherPicker({ value, onChange, teachers = [] }) {
   const [query, setQuery] = useState("");
   const [hover, setHover] = useState(0);
   const rootRef = useRef(null);
+  const listRef = useRef(null);
+
+  useEffect(() => {
+    if (!listRef.current) return;
+    const items = listRef.current.querySelectorAll("[data-item]");
+    if (items[hover]) items[hover].scrollIntoView({ block: "nearest" });
+  }, [hover]);
 
   const selected = value ? teachers.find((t) => t.id === value) : null;
 
@@ -70,7 +77,7 @@ export function useTeacherPicker({ value, onChange, teachers = [] }) {
     open, setOpen,
     query, setQuery,
     hover, setHover,
-    rootRef, selected, filtered,
+    rootRef, listRef, selected, filtered,
     pick, clear, onKeyDown,
   };
 }

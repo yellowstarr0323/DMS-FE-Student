@@ -194,7 +194,7 @@ export function TeacherPicker({
     open, setOpen,
     query, setQuery,
     hover, setHover,
-    rootRef, selected, filtered,
+    rootRef, listRef, selected, filtered,
     pick, clear, onKeyDown,
   } = useTeacherPicker({ value, onChange, teachers });
 
@@ -240,7 +240,7 @@ export function TeacherPicker({
       )}
 
       {open && (
-        <Dropdown $maxHeight={maxHeight}>
+        <Dropdown ref={listRef} $maxHeight={maxHeight}>
           <DropdownHeader>
             <span>선생님 {filtered.length}명</span>
             <Hotkey>↑↓ 선택 · Enter 확정</Hotkey>
@@ -253,6 +253,7 @@ export function TeacherPicker({
             return (
               <Row
                 key={t.id}
+                data-item
                 $hover={i === hover}
                 $last={i === filtered.length - 1}
                 onMouseEnter={() => setHover(i)}
