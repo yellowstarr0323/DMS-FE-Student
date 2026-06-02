@@ -122,6 +122,14 @@ const StepTime = styled.div`
   letter-spacing: var(--tracking);
 `;
 
+const StepText = styled.div`
+  text-align: center;
+
+  @media (max-width: 640px) {
+    text-align: left;
+  }
+`;
+
 const Connector = styled.div`
   flex: 1;
   height: 2px;
@@ -214,10 +222,10 @@ export function LatestApplicationCard({ application }) {
                 <Node $bg={view.bg} $fg={view.fg} $border={view.border}>
                   {view.content}
                 </Node>
-                <div>
+                <StepText>
                   <StepLabel $tone={tone}>{s.rejected ? "거절 됨" : s.label}</StepLabel>
                   <StepTime>{stepTimeText(s)}</StepTime>
-                </div>
+                </StepText>
               </Step>
               {!last && <Connector $active={lineActive} />}
             </React.Fragment>
