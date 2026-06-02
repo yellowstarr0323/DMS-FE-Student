@@ -50,7 +50,7 @@ const PeriodGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   gap: 12px;
-  align-items: end;
+  align-items: center;
 
   @media (max-width: 480px) {
     grid-template-columns: 1fr;
