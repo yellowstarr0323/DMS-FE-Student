@@ -20,7 +20,6 @@ export function useTeacherPicker({ value, onChange, teachers = [] }) {
 
   const selected = value ? teachers.find((t) => t.id === value) : null;
 
-  // 외부 클릭 시 드롭다운 닫기.
   useEffect(() => {
     if (!open) return;
     const onDocClick = (e) => {
