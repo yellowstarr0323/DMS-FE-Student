@@ -200,6 +200,10 @@ function ApplyPage() {
     }
   }
 
+  // 만료된 신청은 카드로 띄우지 않는다 — "만료됨" 칩을 못 보고 신청이 살아 있다고 오해하는 사례가 있었다.
+  const isExpired = myApplication.data?.status === "EXPIRED";
+  const latestApplication = isExpired ? null : myApplication.data;
+
   function logout() {
     signOut();
     navigate("/login");
@@ -217,10 +221,10 @@ function ApplyPage() {
         <LatestBlock>
           {myApplication.loading ? (
             <LoadingCard>최신 신청을 불러오는 중…</LoadingCard>
-          ) : myApplication.data ? (
-            <LatestApplicationCard application={myApplication.data} />
+          ) : latestApplication ? (
+            <LatestApplicationCard application={latestApplication} />
           ) : (
-            <EmptyLatest />
+            <EmptyLatest expired={isExpired} />
           )}
         </LatestBlock>
 

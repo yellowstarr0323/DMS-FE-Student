@@ -1,4 +1,5 @@
-/* EmptyLatest — 신청 이력이 없을 때 보여주는 빈 상태 카드. */
+/* EmptyLatest — 표시할 진행 중인 신청이 없을 때 보여주는 빈 상태 카드.
+   expired=true 면 직전 신청이 기간 만료된 경우라 문구를 따로 준다. */
 
 import styled from "styled-components";
 import { Icon } from "./icon.jsx";
@@ -40,15 +41,19 @@ const Desc = styled.div`
   letter-spacing: var(--tracking);
 `;
 
-export function EmptyLatest() {
+export function EmptyLatest({ expired = false }) {
   return (
     <Section>
       <IconCircle>
         <Icon name="folder" size={22} color="var(--primary-blue-300)" />
       </IconCircle>
       <div>
-        <Title>아직 신청한 새벽자습이 없어요</Title>
-        <Desc>아래 폼에서 새로운 신청을 작성해보세요.</Desc>
+        <Title>{expired ? "진행 중인 새벽자습 신청이 없어요" : "아직 신청한 새벽자습이 없어요"}</Title>
+        <Desc>
+          {expired
+            ? "지난 신청은 기간이 지나 만료됐어요. 아래 폼에서 다시 신청해주세요."
+            : "아래 폼에서 새로운 신청을 작성해보세요."}
+        </Desc>
       </div>
     </Section>
   );
