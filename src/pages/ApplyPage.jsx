@@ -1,5 +1,5 @@
 /* ApplyPage — 최신 신청 1건 요약 + 새 신청 작성 폼.
-   프로필/교사/유형/최신신청을 백엔드에서 로드하고, 폼 제출로 신청을 보낸다.
+  프로필/교사/유형/최신신청을 백엔드에서 로드하고, 폼 제출로 신청을 보낸다.
    로그아웃 시 토큰을 비우고 /login 으로 이동. */
 
 import React from "react";
@@ -142,6 +142,29 @@ const ToastIcon = styled.span`
   justify-content: center;
 `;
 
+const Notice = styled.div`
+  background: #fff;
+  border-radius: var(--radius-xl);
+  padding: 28px 32px;
+  border: 1px dashed var(--gray-300);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--gray-500);
+  letter-spacing: var(--tracking);
+  line-height: 1.6;
+
+  @media (max-width: 640px) {
+    padding: 20px 16px;
+    border-radius: var(--radius-lg);
+  }
+`;
+
+// 백엔드는 EXPIRED/REJECTED 가 아닌 신청을 "진행 중"으로 보고 새 신청에 409 를 준다
+// (CheckDaybreakServiceImpl.checkDaybreakStudyApplicationExists).
+// 폼을 열어두고 막는 화면이 되지 않도록 제외 목록을 백엔드와 똑같이 맞춘다 —
+// 새 상태 값이 생기면 양쪽 다 "진행 중"으로 취급된다.
+const CLOSED_STATUSES = ["EXPIRED", "REJECTED"];
+
 const FALLBACK_STUDENT = { name: "학생", id: "", initial: "·" };
 
 function toHeaderStudent(profile) {
@@ -153,13 +176,6 @@ function toHeaderStudent(profile) {
     profileImageUrl: profile.profileImageUrl ?? null,
   };
 }
-
-const todayLabel = new Intl.DateTimeFormat("ko-KR", {
-  year: "numeric",
-  month: "2-digit",
-  day: "2-digit",
-  weekday: "short",
-}).format(new Date());
 
 function ApplyPage() {
   const navigate = useNavigate();
@@ -201,8 +217,12 @@ function ApplyPage() {
   }
 
   // 만료된 신청은 카드로 띄우지 않는다 — "만료됨" 칩을 못 보고 신청이 살아 있다고 오해하는 사례가 있었다.
-  const isExpired = myApplication.data?.status === "EXPIRED";
+  const status = myApplication.data?.status ?? null;
+  const isExpired = status === "EXPIRED";
   const latestApplication = isExpired ? null : myApplication.data;
+
+  // 요청 중 / 1차 승인 / 최종 승인 상태에서는 새로 신청할 일이 없고 백엔드도 409 로 막으므로 폼을 감춘다.
+  const hasActiveApplication = status !== null && !CLOSED_STATUSES.includes(status);
 
   function logout() {
     signOut();
@@ -215,7 +235,6 @@ function ApplyPage() {
       <Main>
         <TitleRow>
           <Title>새벽자습 신청</Title>
-          <Today>{todayLabel} · 오늘</Today>
         </TitleRow>
 
         <LatestBlock>
@@ -228,29 +247,35 @@ function ApplyPage() {
           )}
         </LatestBlock>
 
-        <FormSection>
-          <FormHeader>
-            <div>
-              <FormTitle>새 신청 작성</FormTitle>
-            </div>
-          </FormHeader>
-          <ApplyForm
-            teachers={teachers.data ?? []}
-            types={types.data ?? []}
-            teacherId={teacherId}
-            setTeacherId={setTeacherId}
-            typeId={typeId}
-            setTypeId={setTypeId}
-            startDate={startDate}
-            setStartDate={setStartDate}
-            endDate={endDate}
-            setEndDate={setEndDate}
-            reason={reason}
-            setReason={setReason}
-            onSubmit={submit}
-            submitting={submitting}
-          />
-        </FormSection>
+        {myApplication.loading ? null : hasActiveApplication ? (
+          <Notice>
+            진행 중인 신청이 있어 새 신청은 작성할 수 없어요. 승인 결과가 나오거나 신청 기간이 지나면 다시 신청할 수 있어요.
+          </Notice>
+        ) : (
+          <FormSection>
+            <FormHeader>
+              <div>
+                <FormTitle>새 신청 작성</FormTitle>
+              </div>
+            </FormHeader>
+            <ApplyForm
+              teachers={teachers.data ?? []}
+              types={types.data ?? []}
+              teacherId={teacherId}
+              setTeacherId={setTeacherId}
+              typeId={typeId}
+              setTypeId={setTypeId}
+              startDate={startDate}
+              setStartDate={setStartDate}
+              endDate={endDate}
+              setEndDate={setEndDate}
+              reason={reason}
+              setReason={setReason}
+              onSubmit={submit}
+              submitting={submitting}
+            />
+          </FormSection>
+        )}
       </Main>
 
       {toast.visible && (

@@ -1,6 +1,6 @@
 /* LatestApplicationCard — 내 최신 새벽자습 신청 1건의 상태 + 기간 + 승인 타임라인.
-   백엔드 /daybreaks/study-application/my 는 { status, startDate, endDate } 만 주므로
-   유형/교사/사유/시각은 표시하지 않는다. 타임라인은 status 로만 단계를 그린다. */
+  백엔드 /daybreaks/study-application/my 는 { status, startDate, endDate } 만 주므로
+  유형/교사/사유/시각은 표시하지 않는다. 타임라인은 status 로만 단계를 그린다. */
 
 import React from "react";
 import styled from "styled-components";
@@ -43,16 +43,9 @@ const PeriodRow = styled.div`
 `;
 
 const PeriodText = styled.span`
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--gray-700);
-  letter-spacing: var(--tracking);
-`;
-
-const PeriodDays = styled.span`
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--gray-400);
   letter-spacing: var(--tracking);
 `;
 
@@ -107,7 +100,7 @@ const IdleDot = styled.span`
 `;
 
 const StepLabel = styled.div`
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: var(--tracking);
   color: ${({ $tone }) =>
@@ -116,7 +109,7 @@ const StepLabel = styled.div`
 
 const StepTime = styled.div`
   margin-top: 4px;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 500;
   color: var(--gray-400);
   letter-spacing: var(--tracking);

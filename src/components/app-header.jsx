@@ -5,7 +5,7 @@ import { Icon } from "./icon.jsx";
 import markUrl from "../assets/dms-mark.png";
 
 const Header = styled.header`
-  height: 72px;
+  height: 80px;
   background: #fff;
   border-bottom: 1px solid var(--gray-200);
   display: flex;
@@ -27,18 +27,18 @@ const Brand = styled.div`
 `;
 
 const Mark = styled.img`
-  height: 32px;
+  height: 40px;
 `;
 
 const BrandName = styled.span`
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 800;
   letter-spacing: var(--tracking-tight);
   color: var(--gray-700);
 `;
 
 const Divider = styled.span`
-  height: 18px;
+  height: 22px;
   width: 1px;
   background: var(--gray-200);
   display: inline-block;
@@ -49,7 +49,7 @@ const Divider = styled.span`
 `;
 
 const PageTitle = styled.span`
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
   color: var(--gray-500);
   letter-spacing: var(--tracking);
@@ -73,15 +73,15 @@ const Profile = styled.div`
 `;
 
 const Avatar = styled.div`
-  width: 36px;
-  height: 36px;
+  width: 42px;
+  height: 42px;
   border-radius: var(--radius-pill);
   background: var(--primary-blue-50);
   color: var(--primary-blue-300);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: var(--tracking);
   overflow: hidden;
@@ -104,14 +104,14 @@ const NameBlock = styled.div`
 `;
 
 const Name = styled.span`
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--gray-700);
   letter-spacing: var(--tracking);
 `;
 
 const SubId = styled.span`
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--gray-500);
   letter-spacing: var(--tracking);
@@ -149,7 +149,7 @@ export function AppHeader({ student, onLogout }) {
           </NameBlock>
         </Profile>
         <LogoutButton onClick={onLogout} title="로그아웃">
-          <Icon name="logout" size={18} />
+          <Icon name="logout" size={20} />
         </LogoutButton>
       </Right>
     </Header>

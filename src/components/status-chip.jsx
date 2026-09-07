@@ -21,7 +21,7 @@ const Chip = styled.span`
   background: ${({ $bg }) => $bg};
   color: ${({ $fg }) => $fg};
   font-family: var(--font-sans);
-  font-size: ${({ $size }) => ($size === "sm" ? "11px" : "12px")};
+  font-size: ${({ $size }) => ($size === "sm" ? "15px" : "16px")};
   font-weight: 700;
   letter-spacing: var(--tracking);
   line-height: 1;
