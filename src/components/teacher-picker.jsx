@@ -183,6 +183,23 @@ const RowName = styled.div`
   letter-spacing: var(--tracking);
 `;
 
+const Match = styled.span`
+  color: var(--primary-blue-300);
+`;
+
+function HighlightedName({ name, query }) {
+  const q = query.trim().toLowerCase();
+  const idx = q ? name.toLowerCase().indexOf(q) : -1;
+  if (idx < 0) return name;
+  return (
+    <>
+      {name.slice(0, idx)}
+      <Match>{name.slice(idx, idx + q.length)}</Match>
+      {name.slice(idx + q.length)}
+    </>
+  );
+}
+
 export function TeacherPicker({
   value,
   onChange,
@@ -261,7 +278,7 @@ export function TeacherPicker({
               >
                 <RowAvatar $selected={isSelected}>{t.name[0]}</RowAvatar>
                 <RowBody>
-                  <RowName>{t.name} 선생님</RowName>
+                  <RowName><HighlightedName name={t.name} query={query} /> 선생님</RowName>
                 </RowBody>
                 {isSelected && <Icon name="check" size={18} color="var(--primary-blue-300)" strokeWidth={2.6} />}
               </Row>

@@ -32,7 +32,14 @@ export function useTeacherPicker({ value, onChange, teachers = [] }) {
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return teachers;
-    return teachers.filter((t) => t.name.toLowerCase().includes(q));
+    const prefix = [];
+    const rest = [];
+    for (const t of teachers) {
+      const name = t.name.toLowerCase();
+      if (name.startsWith(q)) prefix.push(t);
+      else if (name.includes(q)) rest.push(t);
+    }
+    return [...prefix, ...rest];
   }, [query, teachers]);
 
   const pick = useCallback(
