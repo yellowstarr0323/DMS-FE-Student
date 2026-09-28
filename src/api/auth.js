@@ -4,13 +4,13 @@
 import { api } from "./client.js";
 import { setTokens, clearTokens } from "./token.js";
 
-export async function signIn({ accountId, password, deviceToken = null }) {
+export async function signIn({ accountId, password, deviceToken = null, remember = true }) {
   const data = await api.post(
     "/auth/tokens",
     { accountId, password, deviceToken },
     { auth: false },
   );
-  setTokens(data);
+  setTokens(data, { remember });
   return data;
 }
 

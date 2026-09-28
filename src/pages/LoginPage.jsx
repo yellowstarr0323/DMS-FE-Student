@@ -241,7 +241,7 @@ function LoginPage() {
     setSubmitting(true);
     setError("");
     try {
-      await signIn({ accountId: id, password: pw });
+      await signIn({ accountId: id, password: pw, remember });
       toast.show();
       setTimeout(() => navigate("/apply"), 700);
     } catch (e) {

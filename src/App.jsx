@@ -13,7 +13,8 @@ function RequireAuth({ children }) {
 function App() {
   return (
     <Routes>
-      <Route path="/login" element={<LoginPage />} />
+      <Route path="/" element={<Navigate to={isAuthenticated() ? "/apply" : "/login"} replace />} />
+      <Route path="/login" element={isAuthenticated() ? <Navigate to="/apply" replace /> : <LoginPage />} />
       <Route
         path="/apply"
         element={
@@ -22,7 +23,7 @@ function App() {
           </RequireAuth>
         }
       />
-      <Route path="*" element={<Navigate to="/login" replace />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
