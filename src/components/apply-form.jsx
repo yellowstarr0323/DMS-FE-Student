@@ -3,11 +3,11 @@
 
 import styled from "styled-components";
 import { Field } from "./field.jsx";
-import { Input } from "./input.jsx";
 import { Textarea } from "./textarea.jsx";
 import { Button } from "./button.jsx";
 import { Icon } from "./icon.jsx";
 import { TeacherPicker } from "./teacher-picker.jsx";
+import { DateRangePicker } from "./date-range-picker.jsx";
 
 const Form = styled.div`
   display: flex;
@@ -46,36 +46,6 @@ const EmptyTypes = styled.div`
   letter-spacing: var(--tracking);
 `;
 
-const PeriodGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 12px;
-  align-items: center;
-
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-
-    > :nth-child(2) {
-      display: none;
-    }
-  }
-`;
-
-const DateGroup = styled.div``;
-
-const DateLabel = styled.div`
-  display: none;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--gray-500);
-  letter-spacing: var(--tracking);
-  margin-bottom: 6px;
-
-  @media (max-width: 480px) {
-    display: block;
-  }
-`;
-
 const SubmitRow = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -97,6 +67,25 @@ function diffDays(start, end) {
   return Math.floor(ms / 86400000) + 1;
 }
 
+// Date → yyyy-MM-dd (로컬 기준).
+function toYmd(d) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
+// 선택 가능한 날짜 구간. 백엔드 DaybreakStudyApplication.create 와 같은 규칙:
+// 새벽자습은 월~목만 운영 — 오늘이 월~목이면 이번 주, 금~일이면 다음 주 월~목. 과거 날짜는 불가.
+function applicableWeek(today = new Date()) {
+  const dow = today.getDay(); // 0=일 … 6=토
+  const monday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - ((dow + 6) % 7));
+  if (dow === 0 || dow >= 5) monday.setDate(monday.getDate() + 7);
+  const thursday = new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + 3);
+  const min = monday > today ? monday : today;
+  return { minDate: toYmd(min), maxDate: toYmd(thursday) };
+}
+
 export function ApplyForm({
   teachers = [],
   types = [],
@@ -108,8 +97,10 @@ export function ApplyForm({
   onSubmit,
   submitting = false,
 }) {
-  const dateError = startDate && endDate && endDate < startDate
-    ? "종료일이 시작일보다 앞설 수 없어요."
+  const week = applicableWeek();
+  // 페이지를 띄워둔 채 날짜가 넘어가면 이미 고른 날이 과거가 될 수 있다.
+  const dateError = [startDate, endDate].some((d) => d && (d < week.minDate || d > week.maxDate))
+    ? "선택한 날짜는 더 이상 신청할 수 없어요. 다시 선택해주세요."
     : null;
   const days = diffDays(startDate, endDate);
   const canSubmit =
@@ -139,28 +130,23 @@ export function ApplyForm({
         )}
       </Field>
 
-      <Field label="일정" required hint="시작일과 종료일을 선택해주세요." right={days ? `총 ${days}일` : ""} error={dateError}>
-        <PeriodGrid>
-          <DateGroup>
-            <DateLabel>시작일</DateLabel>
-            <Input
-              type="date"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
-              leading={<Icon name="cal" size={20} />}
-            />
-          </DateGroup>
-          <Icon name="arrR" size={18} color="var(--gray-400)" />
-          <DateGroup>
-            <DateLabel>종료일</DateLabel>
-            <Input
-              type="date"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-              leading={<Icon name="cal" size={20} />}
-            />
-          </DateGroup>
-        </PeriodGrid>
+      <Field
+        label="일정"
+        required
+        hint="하루만 신청하려면 한 번, 기간은 시작일과 종료일을 차례로 눌러주세요."
+        right={days ? `총 ${days}일` : ""}
+        error={dateError}
+      >
+        <DateRangePicker
+          minDate={week.minDate}
+          maxDate={week.maxDate}
+          startDate={startDate}
+          endDate={endDate}
+          onChange={(start, end) => {
+            setStartDate(start);
+            setEndDate(end);
+          }}
+        />
       </Field>
 
       <Field label="사유" required>

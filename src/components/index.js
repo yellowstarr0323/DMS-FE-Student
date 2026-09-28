@@ -10,6 +10,7 @@ export { Textarea } from "./textarea.jsx";
 export { StatusChip, STATUS_META } from "./status-chip.jsx";
 export { AppHeader } from "./app-header.jsx";
 export { TeacherPicker } from "./teacher-picker.jsx";
+export { DateRangePicker } from "./date-range-picker.jsx";
 export { ApplyForm } from "./apply-form.jsx";
 export { LatestApplicationCard } from "./latest-application-card.jsx";
 export { EmptyLatest } from "./empty-latest.jsx";
