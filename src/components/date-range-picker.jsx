@@ -100,6 +100,7 @@ const WeekdayCell = styled.span`
 `;
 
 const DayCell = styled.button`
+  position: relative;
   aspect-ratio: 1;
   border: none;
   border-radius: var(--radius-md);
@@ -107,11 +108,24 @@ const DayCell = styled.button`
   font-size: 14px;
   letter-spacing: var(--tracking);
   transition: background 0.12s;
-  font-weight: ${({ $selected, $today }) => ($selected || $today ? 700 : 500)};
+  font-weight: ${({ $selected }) => ($selected ? 700 : 500)};
   background: ${({ $selected }) => ($selected ? "var(--primary-blue-300)" : "transparent")};
-  color: ${({ $selected, $today }) =>
-    $selected ? "#fff" : $today ? "var(--primary-blue-300)" : "var(--gray-700)"};
+  color: ${({ $selected }) => ($selected ? "#fff" : "var(--gray-700)")};
   cursor: pointer;
+
+  /* 오늘은 숫자 아래 점으로만 표시한다(선택된 날의 파란색과 헷갈리지 않도록). */
+  &::after {
+    content: "";
+    display: ${({ $today }) => ($today ? "block" : "none")};
+    position: absolute;
+    left: 50%;
+    bottom: 5px;
+    width: 4px;
+    height: 4px;
+    margin-left: -2px;
+    border-radius: var(--radius-pill);
+    background: ${({ $selected }) => ($selected ? "#fff" : "var(--primary-blue-300)")};
+  }
 
   &:disabled {
     color: ${({ $outside }) => ($outside ? "var(--gray-200)" : "var(--gray-300)")};
