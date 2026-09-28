@@ -298,7 +298,7 @@ function LoginPage() {
                   leading={<Icon name="lock" size={20} />}
                   trailing={
                     <TrailingButton type="button" onClick={() => setShowPw((s) => !s)}>
-                      <Icon name={showPw ? "eyeOff" : "eye"} size={20} />
+                      <Icon name={showPw ? "eye" : "eyeOff"} size={20} />
                     </TrailingButton>
                   }
                 />
