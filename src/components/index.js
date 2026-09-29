@@ -14,3 +14,4 @@ export { DateRangePicker } from "./date-range-picker.jsx";
 export { ApplyForm } from "./apply-form.jsx";
 export { LatestApplicationCard } from "./latest-application-card.jsx";
 export { EmptyLatest } from "./empty-latest.jsx";
+export { ChatbotPanel } from "./chatbot-panel.jsx";

@@ -10,13 +10,15 @@ import {
   ApplyForm,
   LatestApplicationCard,
   EmptyLatest,
+  ChatbotPanel,
   Icon,
 } from "../components/index.js";
-import { useToast, useAsyncData } from "../hooks/index.js";
+import { useToast, useAsyncData, useChatbot } from "../hooks/index.js";
 import { getMyProfile } from "../api/student.js";
 import { getGeneralTeachers } from "../api/teacher.js";
 import { getStudyTypes, getMyApplication, applyStudyApplication } from "../api/daybreak.js";
 import { signOut } from "../api/auth.js";
+import { CHATBOT_QUESTION_MAX } from "../api/chatbot.js";
 
 const Page = styled.div`
   min-height: 100vh;
@@ -185,6 +187,7 @@ function ApplyPage() {
   const teachers = useAsyncData(getGeneralTeachers);
   const types = useAsyncData(getStudyTypes);
   const myApplication = useAsyncData(getMyApplication);
+  const chatbot = useChatbot();
 
   const [teacherId, setTeacherId] = React.useState(null);
   const [typeId, setTypeId] = React.useState(null);
@@ -277,6 +280,14 @@ function ApplyPage() {
           </FormSection>
         )}
       </Main>
+
+      <ChatbotPanel
+        messages={chatbot.messages}
+        pending={chatbot.pending}
+        onSend={chatbot.send}
+        onRetry={chatbot.retry}
+        maxLength={CHATBOT_QUESTION_MAX}
+      />
 
       {toast.visible && (
         <Toast>

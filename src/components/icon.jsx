@@ -104,6 +104,13 @@ const PATHS = {
       <path d="M15 9l-6 6M9 9l6 6" />
     </>
   ),
+  chat: <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z" />,
+  send: (
+    <>
+      <path d="M22 2L11 13" />
+      <path d="M22 2l-7 20-4-9-9-4z" />
+    </>
+  ),
 };
 
 export function Icon({ name, size = 20, color = "currentColor", strokeWidth = 1.8 }) {

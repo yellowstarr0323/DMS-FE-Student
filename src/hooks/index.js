@@ -3,3 +3,4 @@
 export { useToast } from "./use-toast.js";
 export { useTeacherPicker } from "./use-teacher-picker.js";
 export { useAsyncData } from "./use-async-data.js";
+export { useChatbot } from "./use-chatbot.js";
